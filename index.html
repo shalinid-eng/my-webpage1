@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Seed Quiz</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            font-family: Constantia, "Times New Roman", serif;
+            background-image: url("https://images.unsplash.com/photo-1501004318641-b39e6451bec6");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .quiz-box {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px 60px;
+            border-radius: 25px;
+            text-align: center;
+            max-width: 850px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        h1 {
+            font-size: 60px;
+            color: darkgreen;
+        }
+
+        .question {
+            font-size: 34px;
+            margin: 30px 0;
+            color: #1b5e20;
+        }
+
+        .options {
+            font-size: 28px;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .options label {
+            display: block;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .options input {
+            transform: scale(1.5);
+            margin-right: 10px;
+        }
+
+        button {
+            margin-top: 25px;
+            padding: 12px 30px;
+            font-size: 26px;
+            border: none;
+            border-radius: 15px;
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #388e3c;
+        }
+
+        .result {
+            margin-top: 25px;
+            font-size: 36px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="quiz-box">
+    <h1>SEED QUIZ</h1>
+
+    <div class="question">
+        What is a seed?
+    </div>
+
+    <div class="options">
+        <label><input type="radio" name="seed" value="wrong"> A. A part of an animal</label>
+        <label><input type="radio" name="seed" value="correct"> B. A unit of a plant from which a new plant grows</label>
+        <label><input type="radio" name="seed" value="wrong"> C. A type of fruit juice</label>
+        <label><input type="radio" name="seed" value="wrong"> D. A small stone</label>
+    </div>
+
+    <button onclick="checkAnswer()">Submit</button>
+
+    <div id="result" class="result"></div>
+</div>
+
+<script>
+    function checkAnswer() {
+        const options = document.getElementsByName("seed");
+        let selected = false;
+
+        for (let option of options) {
+            if (option.checked) {
+                selected = true;
+                if (option.value === "correct") {
+                    document.getElementById("result").innerHTML =
+                        "🎉 Congratulations! Correct Answer 🌱";
+                    document.getElementById("result").style.color = "green";
+                } else {
+                    document.getElementById("result").innerHTML =
+                        "❌ You lost! Try again 😄";
+                    document.getElementById("result").style.color = "red";
+                }
+            }
+        }
+
+        if (!selected) {
+            document.getElementById("result").innerHTML =
+                "⚠️ Please select an answer!";
+            document.getElementById("result").style.color = "orange";
+        }
+    }
+</script>
+
+</body>
+</html>
